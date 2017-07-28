@@ -1,0 +1,18 @@
+*{margin: 0 auto;
+/*background-color: #2F4056;*/}
+
+
+#bigkuang{
+	width: 700px;
+	height: 244px;
+	color: white;
+	/*background-color: #2F4056;*/
+	/*background: rgba(0,0,0,0.1)!important;*/
+	font-family:"楷体";
+	font-size: 24px;
+	}
+#slider{
+background-image: url(../images/newlogin.jpg);
+/*background-size:cover;  */
+
+}

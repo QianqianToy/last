@@ -1,0 +1,116 @@
+html, body {
+	
+}
+
+ul.demo-btns > li {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-left: 30px;
+}
+
+.btn-default-alt {
+  color: #b5b4b4;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #b5b4b4;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-default-alt:hover,
+.btn-default-alt:focus,
+.btn-default-alt:active,
+.btn-default-alt.active {
+  border-color: #b5b4b4;
+  background-color: #b5b4b4;
+  color: #fff;
+}
+
+.btn-primary-alt {
+  color: #4ea8f5;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #4ea8f5;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-primary-alt:hover,
+.btn-primary-alt:focus,
+.btn-primary-alt:active,
+.btn-primary-alt.active {
+  border-color: #4ea8f5;
+  background-color: #4ea8f5;
+  color: #fff;
+}
+
+.btn-warning-alt {
+  color: #f9bd06;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #f9bd06;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-warning-alt:hover,
+.btn-warning-alt:focus,
+.btn-warning-alt:active,
+.btn-warning-alt.active {
+  border-color: #f9bd06;
+  background-color: #f9bd06;
+  color: #fff;
+}
+
+.btn-success-alt {
+  color: #15f574;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #15f574;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-success-alt:hover,
+.btn-success-alt:focus,
+.btn-success-alt:active,
+.btn-success-alt.active {
+  border-color: #15f574;
+  background-color: #15f574;
+  color: #fff;
+}
+.btn-info-alt {
+  color: #72d9f7;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #72d9f7;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-info-alt:hover,
+.btn-info-alt:focus,
+.btn-info-alt:active,
+.btn-info-alt.active {
+  border-color: #72d9f7;
+  background-color: #72d9f7;
+  color: #fff;
+}
+
+.btn-five-alt {
+  color: #D66363;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #D66363;
+  border-width: 1px;
+  border-style: solid;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-five-alt:hover,
+.btn-five-alt:focus,
+.btn-five-alt:active,
+.btn-five-alt.active {
+  border-color: #D66363;
+  background-color: #D66363;
+  color: #fff;
+}

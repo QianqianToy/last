@@ -1,0 +1,80 @@
+#slider {
+	position:absolute;
+	width: 100%;
+	margin-left: 0px;
+
+}
+
+#header_wrapper {
+	width: 86.7%;
+	background: url(../images/templatmeo_header.jpg) no-repeat top center;
+	margin: 0px auto ;
+}
+
+
+#header {
+	background: url(../images/templatmeo_header.jpg) no-repeat top center;
+	width: 800px;
+	height: 210px;
+	margin: 0 auto;
+	padding-top: 35px;
+	text-align: center;
+}
+
+#menu_wrapper {
+	width: 86.7%;
+	background: url(../images/templatemo_menu.jpg) no-repeat top center;
+	margin: 0px auto ;
+}
+
+#menu {
+	background: url(../images/templatemo_menu.jpg) no-repeat top center;
+	width: 980px;
+	height: 70px;
+	margin: 0 auto;
+	padding-top: 4px;
+}
+
+
+ul.navigation {
+	width: 1000px;
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+}
+
+ul.navigation li {
+	display: inline;
+	margin: 0px;
+	padding: 0;
+}
+
+ul.navigation a {
+	float: left;
+	margin-left: 50px;
+
+	display: block;
+	width: 110px;
+	height: 70px;
+	padding: 34px 15px 0;
+
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	background: url(../images/templatemo_menu_bg.png) no-repeat top center
+}
+
+ul.navigation a:hover, ul.navigation a.selected {
+	color: #FFFF00;
+}
+
+ul.navigation a:focus {
+	outline: none;
+}
+
+
+.hide {
+	display: none;
+}

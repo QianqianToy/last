@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分类榜</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/blue.css">
+    <link rel="stylesheet" href="css/coda-slider.css" type="text/css" charset="utf-8" />
+
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+    <link href="css/classifybutton.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/font-awesome.min.css"  type="text/css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" />
+
+    <link href="../assets/style.css" rel="stylesheet">
+
+    <style>
+        #divleft{
+            border-width:0px;
+            border-color: #f5f5f5;
+            width:249.75px;
+            height:41px;
+            float:left;
+            position: absolute;
+            left: 240px;
+        }
+        #divright{
+            border-width:0px;
+            border-color: #f5f5f5;
+            width:500px;
+            height:600px;
+            float:left;
+            position: absolute;
+            left: 519.75px;
+        }
+    </style>
+    <script type="text/javascript" language="JavaScript">
+        $().ready(function () {
+//            alert("asd");
+            $.getJSON('/last/showArticleUserView',{articleBigType:"言情",articleSmallType:"小说"},function(data){
+//                alert("data"+data);
+                for(var i=0;i<3;i++){
+
+                    var $title=$("<div class='box wrap-vid' style='background-color: #649170;'>"
+                        +"<div class='zoom-container' >"
+                        +"<div class='zoom-caption' >"
+                        +"<p id='title'>"+data[i].title+"</p>"
+                        +"</div>"
+                        +"<img src='images/"+data[i].photo+"' style='width: 468px' />"
+                        +"</div>"
+                        +"<h3 class='vid-name'><a href='#'>"+data[i].title+"</a></h3>"
+                        +"<div class='info'>"
+                        +"<h5>By <a href='#'>"+data[i].username+"</a></h5>"
+                        +"<span><i class='fa fa-calendar'></i>"+data[i].writeTime+"</span>"
+                        +"<span><i class='fa fa-heart'></i>"+data[i].upNum+"</span>"
+                        +"<span><i class='fa fa-thumbs-down'></i>"+data[i].downNum+"</span>"
+                        +"</div>"
+                        +"<p class='more'>"+data[i].content.substring(0,30)+"..."+"</p>"
+                        +"</div>");
+                    $("#divright").append($title);
+
+                }
+                var $btn=$("<a href='#' class='readmore'><input  id='yuedu'   type='button'  value='阅读更多' ></a>");
+                $("#divright").append($btn);
+            });
+//            alert("add");
+            $("li").on("click",function(){
+                $.getJSON("/last/showArticleUserView",{articleBigType:$(this).parent().prev().text(),articleSmallType:$(this).text()},function(data2){
+                    $("#divright").empty();
+                    for(var i=0;i<3;i++){
+                        var $title=$("<div class='box wrap-vid' style='background-color: #649170;'>"
+                            +"<div class='zoom-container' >"
+                            +"<div class='zoom-caption' >"
+                            +"<p id='title'>"+data2[i].title+"</p>"
+                            +"</div>"
+                            +"<img src='images/"+data2[i].photo+"' style='width: 468px'/>"
+                            +"</div>"
+                            +"<h3 class='vid-name'><a href='#'>"+data2[i].title+"</a></h3>"
+                            +"<div class='info'>"
+                            +"<h5>By <a href='#'>"+data2[i].username+"</a></h5>"
+                            +"<span><i class='fa fa-calendar'></i>"+data2[i].writeTime+"</span>"
+                            +"<span><i class='fa fa-heart'></i>"+data2[i].upNum+"</span>"
+                            +"<span><i class='fa fa-thumbs-down'></i>"+data2[i].downNum+"</span>"
+                            +"</div>"
+                            +"<p class='more'>"+data2[i].content.substring(0,30)+"..."+"</p>"
+                            +"</div>");
+                        $("#divright").append($title);
+                    }
+                    var $btn=$("<a href='#' class='readmore'><input  id='yuedu' style='width: 468px;height: 20px'   type='button'  value='阅读更多' ></a>");
+                    $("#divright").append($btn);
+                });
+            });
+        });
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini" id="slider" background="images/bg2.jpg">
+<div >
+    <div id="header_wrapper"><!--共享书房周围图片-->
+        <div id="header">
+        </div>
+    </div>
+    <div id="menu_wrapper"><!--菜单栏设置-->
+        <div id="menu">
+            <ul class="navigation">
+                <li><a href="javascript:history.back(1)" >主页</a></li>
+                <li><a data-toggle="modal" data-target="#login" href="">登录</a></li>
+                <li><a href="regist.jsp">注册</a></li>
+                <li><a href="share.jsp">共享书籍</a></li>
+                <li><a href="">写文章</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- ///////////////////////////////////////////////xia la  cai dan-->
+
+<!--<section class="content-section">-->
+    <!--<div class="container">-->
+        <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+        <!--<div class="col-md-12" id="button">-->
+            <!--<ul class="demo-btns">-->
+                <!--<li class="btn-group">-->
+                    <!--<button class="btn btn-radius btn-default">言情</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-radius dropdown-toggle btn-default"><span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">小说</a></li>-->
+                        <!--<li><a href="#">散文</a></li>-->
+                        <!--<li><a href="#">长篇</a></li>-->
+                        <!--<li><a href="#">短篇</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="btn-group">-->
+                    <!--<button class="btn btn-radius btn-primary">购物指南</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-radius btn-primary dropdown-toggle"><span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">小说</a></li>-->
+                        <!--<li><a href="#">散文</a></li>-->
+                        <!--<li><a href="#">长篇</a></li>-->
+                        <!--<li><a href="#">短篇</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="btn-group">-->
+                    <!--<button class="btn btn-radius btn-danger">玄幻</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-radius btn-danger dropdown-toggle"><span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">小说</a></li>-->
+                        <!--<li><a href="#">散文</a></li>-->
+                        <!--<li><a href="#">长篇</a></li>-->
+                        <!--<li><a href="#">短篇</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--&lt;!&ndash;<li class="btn-group">-->
+                    <!--<button class="btn btn-radius btn-warning">玄幻</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-radius btn-warning dropdown-toggle"><span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">小说</a></li>-->
+                        <!--<li><a href="#">散文</a></li>-->
+                        <!--<li><a href="#">长篇</a></li>-->
+                        <!--<li><a href="#">短篇</a></li>-->
+                    <!--</ul>-->
+                <!--</li>&ndash;&gt;-->
+                <!--<li class="btn-group">-->
+                    <!--<button class="btn btn-radius btn-success">恐怖</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-radius btn-success dropdown-toggle"><span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">小说</a></li>-->
+                        <!--<li><a href="#">散文</a></li>-->
+                        <!--<li><a href="#">长篇</a></li>-->
+                        <!--<li><a href="#">短篇</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li class="btn-group">-->
+                    <!--<button class="btn btn-radius btn-info">诗集</button>-->
+                    <!--<button data-toggle="dropdown" class="btn btn-radius btn-info dropdown-toggle"><span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">长篇</a></li>-->
+                        <!--<li><a href="#">短篇</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+<!--</section>-->
+<div class="box box-solid" id="divleft">
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            言情
+            <span class="caret"></span>
+        </button>
+        <ul  style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">小说</a></li>
+            <li><a href="#">散文</a></li>
+            <li><a href="#">长篇</a></li>
+            <li><a href="#">短篇</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            购物指南
+            <span class="caret"></span>
+        </button>
+        <ul style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">化妆品</a></li>
+            <li><a href="#">时装</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            玄幻
+            <span class="caret"></span>
+        </button>
+        <ul style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">小说</a></li>
+            <li><a href="#">散文</a></li>
+            <li><a href="#">长篇</a></li>
+            <li><a href="#">短篇</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            恐怖
+            <span class="caret"></span>
+        </button>
+        <ul style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">小说</a></li>
+            <li><a href="#">散文</a></li>
+            <li><a href="#">长篇</a></li>
+            <li><a href="#">短篇</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            诗集
+            <span class="caret"></span>
+        </button>
+        <ul style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">短篇</a></li>
+            <li><a href="#">长篇</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="page-content" class="index-page container" >
+    <div class="row">
+        <div id="main-content">
+            <div class="col-md-6" id="divright">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery 2.2.3 -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="js/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="js/fastclick.js"></script>
+<!-- Page Script -->
+<script type="text/javascript" src="js/jquery.pagination.js"></script>
+<script type="text/javascript" src="js/jquery.knob.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script src="js/jquery.validate.js"></script>
+</body>
+</html>

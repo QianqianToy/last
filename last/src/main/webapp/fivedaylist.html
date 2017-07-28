@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五天榜</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.print.css" media="print">
+    <link rel="stylesheet" href="css/AdminLTE.min.css">
+    <link rel="stylesheet" href="css/_all-skins.min.css">
+    <link rel="stylesheet" href="css/blue.css">
+    <link rel="stylesheet" href="css/coda-slider.css" type="text/css" charset="utf-8" />
+
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/font-awesome.min.css"  type="text/css">
+
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="../assets/style.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        #divleft{
+            border-style: solid;
+            border-width:1px;
+            border-color: #f5f5f5;
+            width:249.75px;
+            height:41px;
+            float:left;
+            position: absolute;
+            left: 240px;
+        }
+        #divright{
+            border-style: solid;
+            border-width:0px;
+            border-color: #f5f5f5;
+            width:500px;
+            height:600px;
+            float:left;
+            position: absolute;
+            left: 519.75px;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        $().ready(function () {
+//            alert("asd");
+            $.getJSON('/last/showWeekRank',function(data){
+//                alert("data"+data);
+                for(var i=0;i<1;i++){
+
+                    var $title=$("<div class='box wrap-vid' style='background-color: #649170;'>"
+                        +"<div class='zoom-container' style='background-color: #649170;' >"
+                        +"<div class='zoom-caption'style='background-color: #649170;' >"
+                        +"<p id='title'>"+data[i].article.title+"</p>"
+                        +"</div>"
+                        +"<img src='images/"+data[i].photo+"'style='width: 468px;'/>"
+                        +"</div>"
+                        +"<h3 class='vid-name'><a href='#'>"+data[i].article.title+"</a></h3>"
+                        +"<div class='info'>"
+                        +"<h5>By <a href='#'>"+data[i].article.username+"</a></h5>"
+                        +"<span><i class='fa fa-calendar'></i>"+data[i].writeTime+"</span>"
+                        +"<span><i class='fa fa-heart'></i>"+data[i].article.upNum+"</span>"
+                        +"<span><i class='fa fa-thumbs-down'></i>"+data[i].article.downNum+"</span>"
+                        +"</div>"
+                        +"<p class='more'>"+data[i].article.content.substring(0,30)+"..."+"</p>"
+                        +"</div>");
+                    $("#divright").append($title);
+
+                }
+                var $btn=$("<a href='#' class='readmore'><input  id='yuedu'   type='button'  value='阅读更多' ></a>");
+                $("#divright").append($btn);
+            });
+//            alert("add");
+            $("li").on("click",function(){
+                $.getJSON("/last/showWeekRankByMonth",{time:$(this).text()},function(data2){
+                    $("#divright").empty();
+                    for(var i=0;i<3;i++){
+
+                        var $title=$("<div class='box wrap-vid' style='background-color: #649170;' >"
+                            +"<div class='zoom-container' style='background-color: #649170;'>"
+                            +"<div class='zoom-caption'style='background-color: #649170;' >"
+                            +"<p id='title'>"+data2[i].article.title+"</p>"
+                            +"</div>"
+                            +"<img src='images/"+data2[i].photo+"' style='width: 468px;'/>"
+                            +"</div>"
+                            +"<h3 class='vid-name'><a href='#'>"+data2[i].article.title+"</a></h3>"
+                            +"<div class='info'>"
+                            +"<h5>By <a href='#'>"+data2[i].article.username+"</a></h5>"
+                            +"<span><i class='fa fa-calendar'></i>"+data2[i].writeTime+"</span>"
+                            +"<span><i class='fa fa-heart'></i>"+data2[i].article.upNum+"</span>"
+                            +"<span><i class='fa fa-thumbs-down'></i>"+data2[i].article.downNum+"</span>"
+                            +"</div>"
+                            +"<p class='more'>"+data2[i].article.content.substring(0,30)+"..."+"</p>"
+                            +"</div>");
+                        $("#divright").append($title);
+                    }
+                    var $btn=$("<a href='#' class='readmore'><input  id='yuedu'   type='button'  value='阅读更多' ></a>");
+                    $("#divright").append($btn);
+                });
+            });
+        });
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini" id="slider" background="images/bg2.jpg">
+
+    <div id="header_wrapper"><!--共享书房周围图片-->
+        <div id="header">
+        </div>
+    </div>
+
+    <div id="menu_wrapper"><!--菜单栏设置-->
+        <div id="menu">
+            <ul class="navigation">
+                <li><a href="javascript:history.back(1)" >主页</a></li>
+                <li><a data-toggle="modal" data-target="#login" href="">登录</a></li>
+                <li><a href="regist.jsp">注册</a></li>
+                <li><a href="share.jsp">共享书籍</a></li>
+                <li><a href="">写文章</a></li>
+                <!--<li ><a href="selectById?userID=${user.userID}" >个人中心</a></li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="box box-solid" id="divleft">
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            7月
+            <span class="caret"></span>
+        </button>
+        <ul  style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">7.1-7.5</a></li>
+            <li><a href="#">7.6-7.10</a></li>
+            <li><a href="#">7.11-7.15</a></li>
+            <li><a href="#">7.16-7.20</a></li>
+            <li><a href="#">7.21-7.25</a></li>
+            <li><a href="#">7.26-7.31</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            6月
+            <span class="caret"></span>
+        </button>
+        <ul style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">6.1-6.5</a></li>
+            <li><a href="#">6.6-6.10</a></li>
+            <li><a href="#">6.11-6.15</a></li>
+            <li><a href="#">6.16-6.20</a></li>
+            <li><a href="#">6.21-6.25</a></li>
+            <li><a href="#">6.26-6.30</a></li>
+        </ul>
+    </div>
+    <div class="dropdown">
+        <button style="width: 249.75px" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            5月
+            <span class="caret"></span>
+        </button>
+        <ul style="width: 247.75px" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">5.1-5.5</a></li>
+            <li><a href="#">5.6-5.10</a></li>
+            <li><a href="#">5.11-5.15</a></li>
+            <li><a href="#">5.16-5.20</a></li>
+            <li><a href="#">5.21-5.25</a></li>
+            <li><a href="#">5.26-5.31</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="page-content" class="index-page container" >
+    <div class="row">
+        <div id="main-content">
+            <div class="col-md-6" id="divright">
+                <!--<div class="box wrap-vid" >-->
+                <!--<div class="zoom-container" >-->
+                <!--<div class="zoom-caption" >-->
+                <!--<p id="title">${art.title}</p>-->
+                <!--</div>-->
+                <!--<img src="images/${art.photo}"/>-->
+                <!--</div>-->
+                <!--<h3 class="vid-name"><a href="#">${art.title}</a></h3>-->
+                <!--<div class="info">-->
+                <!--<h5>By <a href="#">${art.username}</a></h5>-->
+                <!--<span><i class="fa fa-calendar"></i>${art.writeTime}</span>-->
+                <!--<span><i class="fa fa-heart"></i>${art.upNum}</span>-->
+                <!--<span><i class="fa fa-thumbs-down"></i>${art.downNum}</span>-->
+                <!--</div>-->
+                <!--<p class="more">${art.content}</p>-->
+                <!--</div>-->
+
+                <!--<div class="box wrap-vid">-->
+                <!--<div class="zoom-container" >-->
+                <!--<div class="zoom-caption" >-->
+                <!--<p >${more.title}</p>-->
+                <!--</div>-->
+                <!--<img src="images/${more.photo}"/>-->
+                <!--</div>-->
+                <!--<h3 class="vid-name"><a href="#">${more.title}</a></h3>-->
+                <!--<div class="info">-->
+                <!--<h5>By <a href="#">${more.username}</a></h5>-->
+                <!--<span><i class="fa fa-calendar"></i>${more.writeTime}</span>-->
+                <!--<span><i class="fa fa-heart"></i>${more.upNum}</span>-->
+                <!--<span><i class="fa fa-thumbs-down"></i>${more.downNum}</span>-->
+                <!--</div>-->
+                <!--<p class="more">${more.content}</p>-->
+                <!--</div>-->
+                <!--<input type="hidden" VALUE="10" name="count" id="count">-->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery 2.2.3 -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="js/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="js/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="js/app.min.js"></script>
+<!-- iCheck -->
+<script src="js/icheck.min.js"></script>
+<!-- Page Script -->
+</body>
+</html>

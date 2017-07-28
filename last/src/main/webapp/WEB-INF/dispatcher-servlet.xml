@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://mybatis.org/schema/mybatis-spring
+http://mybatis.org/schema/mybatis-spring.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans">
+
+
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+
+        <property value="org.mariadb.jdbc.Driver" name="driverClassName"/>
+
+        <property value="jdbc:mysql://localhost:3306/last" name="url"/>
+
+        <property value="root" name="username"/>
+
+        <property value="123" name="password"/>
+
+    </bean>
+
+
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+
+         <property name="dataSource" ref="dataSource"/>
+
+    </bean>
+
+
+    <mybatis:scan base-package="mapper"/>
+
+    <context:component-scan base-package="service, controller"/>
+
+
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+
+        <property name="dataSource" ref="dataSource"/>
+
+    </bean>
+
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+
+        <!--<property value="/" name="prefix"/>-->
+
+        <!--<property value=".jsp" name="suffix"/>-->
+
+    <!--</bean>-->
+
+
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+
+        <property value="10000000" name="maxUploadSize"/>
+
+    </bean>
+
+    <mvc:annotation-driven/>
+
+    <mvc:default-servlet-handler/>
+
+</beans>

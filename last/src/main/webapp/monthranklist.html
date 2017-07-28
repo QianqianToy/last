@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>月榜</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.print.css" media="print">
+    <link rel="stylesheet" href="css/AdminLTE.min.css">
+    <link rel="stylesheet" href="css/_all-skins.min.css">
+    <link rel="stylesheet" href="css/blue.css">
+    <link rel="stylesheet" href="css/coda-slider.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/style4.css" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/font-awesome.min.css"  type="text/css">
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        #divleft{
+            border-width:0px;
+            border-color: #f5f5f5;
+            width:249.75px;
+            height:41px;
+            float:left;
+            position: absolute;
+            left: 50px;
+        }
+        #divright{
+            border-width:0px;
+            border-color: #f5f5f5;
+            width:500px;
+            height:600px;
+            float:left;
+            position: absolute;
+            left: 450.75px;
+        }
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        $().ready(function () {
+//            alert("asd");
+//            var count=1;
+            $.getJSON('/last/showMonthRank',function(data){
+//                alert("data"+data);
+                for(var i=0;i<data.length;i++){
+                    var $title=$("<div class='box wrap-vid'  style='background-color: #649170;margin-bottom:3px;margin-top:3px'  >"
+                                    +"<div class='zoom-container' style='width: 500px' >"
+                                        +"<div class='zoom-caption' >"
+                                            +"<p contenteditable='true' class='title'>"+data[i].article.title+"</p>"
+                                        +"</div>"
+                                        +"<img src='images/"+data[i].photo+"' style='width: 468px;'/>"
+                                    +"</div>"
+                                    +"<h3 class='vid-name'><a href='#'>"+data[i].article.title+"</a></h3>"
+                                    +"<div class='info'>"
+                                        +"<h5>By <a href='#'>"+data[i].article.username+"</a></h5>"
+                                        +"<span><i class='fa fa-calendar'></i>"+data[i].writeTime+"</span>"
+                                        +"<span><i class='fa fa-heart'></i>"+data[i].article.upNum+"</span>"
+                                        +"<span><i class='fa fa-thumbs-down'></i>"+data[i].article.downNum+"</span>"
+                                    +"</div>"
+                                    +"<p class='more'>"+data[i].article.content.substring(0,30)+"..."+"</p>"
+                                +"</div>");
+                    $("#divright").append($title);
+
+                }
+
+                var $btn=$("<a  class='readmore'><input  id='readmore2' style='width:400px;height: 20px'   type='button'  value='阅读更多' ></a>");
+                $("#divright").append($btn);
+                var $bbb=$("<div tabindex='0' id='qweqwe' style='color:#FFFF00;'>hahaha</div>");
+                $("#divright").append($bbb);
+                $("#readmore2").on("click",function () {
+//
+//                    alert("123");
+//                    var $title=$("<div class='box wrap-vid'  style='background-color: #649170;margin-bottom:3px;margin-top:3px'  >"
+//                        +"<div class='zoom-container' style='width: 500px' >"
+//                        +"<div class='zoom-caption' >"
+//                        +"<p contenteditable='true' class='title'>"+data[count].article.title+"</p>"
+//                        +"</div>"
+//                        +"<img src='images/"+data[count].photo+"' style='width: 468px;'/>"
+//                        +"</div>"
+//                        +"<h3 class='vid-name'><a href='#'>"+data[count].article.title+"</a></h3>"
+//                        +"<div class='info'>"
+//                        +"<h5>By <a href='#'>"+data[count].article.username+"</a></h5>"
+//                        +"<span><i class='fa fa-calendar'></i>"+data[count].writeTime+"</span>"
+//                        +"<span><i class='fa fa-heart'></i>"+data[count].article.upNum+"</span>"
+//                        +"<span><i class='fa fa-thumbs-down'></i>"+data[count].article.downNum+"</span>"
+//                        +"</div>"
+//                        +"<p class='more'>"+data[count].article.content.substring(0,30)+"..."+"</p>"
+//                        +"</div>");
+//                    $("#divright").append($title);
+//                    var count=$("#count").val()+1;
+//                    $("#count").val(count);
+//
+//                    $("#qweqwe").focus();
+//                    alert("234");
+                });
+            });
+
+            var mydate=new Date();
+            var month=mydate.getMonth()+1;
+            for(var i=0;i<12;i++){
+                var $month=$("<li  class='a-btn' id='"+i+"' >"+
+                    "<span class='a-btn-text'>"+month+"月</span>"+
+                    "<span class='a-btn-slide-text'>"+"榜单"+"</span>"+
+                    "<span class='a-btn-icon-right'><span></span></span>"
+                    +"</li>");
+                $("#month").append($month);
+                month--;
+                if(month==0){
+                    break;
+                }
+            }
+            $("li").on("click",function(){
+                $.getJSON("/last/showMonthRankByMonth",{time:$(this).text()},function(data2) {
+                    $("#divright").empty();
+                    for (var i = 0; i < data2.length; i++) {
+                        var $title = $("<div class='box wrap-vid' style='background-color: #649170;margin-bottom:3px;margin-top:3px'  >"
+                            + "<div class='zoom-container'style='background-color: #649170' >"
+                            + "<div class='zoom-caption' style='background-color: #649170'  >"
+                            + "<p id='title' style='background-color: #649170' >" + data2[i].article.title + "</p>"
+                            + "</div>"
+                            + "<img  src='images/" + data2[i].photo + "' style='width: 468px'/>"
+                            + "</div>"
+                            + "<h3 class='vid-name'style='background-color: #649170' ><a href='#' style='color: #000000'>" + data2[i].article.title + "</a></h3>"
+                            + "<div class='info'>"
+                            + "<h5 style='background-color: #649170'>By <a href='#' style='color: #000000'>" + data2[i].article.username + "</a></h5>"
+                            + "<span><i class='fa fa-calendar'></i>" + data2[i].writeTime + "</span>"
+                            + "<span><i class='fa fa-heart'></i>" + data2[i].article.upNum + "</span>"
+                            + "<span><i class='fa fa-thumbs-down'></i>" + data2[i].article.downNum + "</span>"
+                            + "</div>"
+                            + "<p class='more'>" + data2[i].article.content.substring(0, 30) + "..." + "</p>"
+                            + "</div>");
+                        $("#divright").append($title);
+//                        var $btn = $("<a  class='readmore'><input id='readmore2' class='readmore2' style='width:400px;height: 20px'  type='button'  value='阅读更多' ></a>");
+//                    $("input[class='readmore']").attr("id","readmore2");
+//                        $("#divright").append($btn);
+//                        var $bbb = $("<div tabindex='0' id='qweqwe' style='color:#FFFF00;'>hahaha</div>");
+//                        $("#divright").append($bbb);
+//                        $("#readmore2").on("click", function () {
+//                            alert("123");
+//                            $("#qweqwe").focus();
+//                            alert("234");
+//                        });
+                    }
+                });
+            });
+
+
+        });
+    </script>
+</head>
+<body class="hold-transition skin-blue sidebar-mini" id="slider" background="images/bg2.jpg">
+    <div >
+        <div id="header_wrapper"><!--共享书房周围图片-->
+            <div id="header">
+            </div>
+        </div>
+
+        <div id="menu_wrapper"><!--菜单栏设置-->
+            <div id="menu">
+                <ul class="navigation">
+                    <li><a href="javascript:history.back(1)" >主页</a></li>
+                    <li><a data-toggle="modal" data-target="#login" href="">登录</a></li>
+                    <li><a href="regist.jsp">注册</a></li>
+                    <li><a href="share.jsp">共享书籍</a></li>
+                    <li><a href="">写文章</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<div id="divleft">
+    <div class="container fix" >
+        <div class="content">
+            <div class="button-wrapper" id="month">
+                <!--<a href="#" class="a-btn">-->
+                    <!--<span class="a-btn-text">七月</span>-->
+                    <!--<span class="a-btn-slide-text">榜单</span>-->
+                    <!--<span class="a-btn-icon-right"><span></span></span>-->
+                <!--</a>-->
+                <!--<a href="#" class="a-btn">-->
+                    <!--<span class="a-btn-text">六月</span>-->
+                    <!--<span class="a-btn-slide-text">榜单</span>-->
+                    <!--<span class="a-btn-icon-right"><span></span></span>-->
+                <!--</a>-->
+                <!--<a href="#" class="a-btn">-->
+                    <!--<span class="a-btn-text">五月</span>-->
+                    <!--<span class="a-btn-slide-text">榜单</span>-->
+                    <!--<span class="a-btn-icon-right"><span></span></span>-->
+                <!--</a>-->
+                <!--<a href="#" class="a-btn">-->
+                    <!--<span class="a-btn-text">四月</span>-->
+                    <!--<span class="a-btn-slide-text">榜单</span>-->
+                    <!--<span class="a-btn-icon-right"><span></span></span>-->
+                <!--</a>-->
+                <!--<a href="#" class="a-btn">-->
+                    <!--<span class="a-btn-text">三月</span>-->
+                    <!--<span class="a-btn-slide-text">榜单</span>-->
+                    <!--<span class="a-btn-icon-right"><span></span></span>-->
+                <!--</a>-->
+                <!--<a href="#" class="a-btn">-->
+                    <!--<span class="a-btn-text">二月</span>-->
+                    <!--<span class="a-btn-slide-text">榜单</span>-->
+                    <!--<span class="a-btn-icon-right"><span></span></span>-->
+                <!--</a>-->
+                <!--<a href="#" class="a-btn">-->
+                    <!--<span class="a-btn-text">一月</span>-->
+                    <!--<span class="a-btn-slide-text">榜单</span>-->
+                    <!--<span class="a-btn-icon-right"><span></span></span>-->
+                <!--</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--<div class="box box-solid" id="divleft">-->
+        <!--<div class="box-header with-border">-->
+            <!--<h3 class="box-title">月榜</h3>-->
+
+            <!--<div class="box-tools">-->
+                <!--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="box-body no-padding">-->
+            <!--<ul class="nav nav-pills nav-stacked" id="month">-->
+                <!--&lt;!&ndash;<li><a id="one"><i class="fa fa-circle-o text-red"></i> </a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a id="two"><i class="fa fa-circle-o text-yellow"></i> 6月</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a id="three"><i class="fa fa-circle-o text-light-blue"></i> 5月</a></li>&ndash;&gt;-->
+
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div id="divright">-->
+
+
+    <!--</div>-->
+    <div id="page-content" class="index-page container" >
+        <div class="row">
+            <div id="main-content">
+                <div class="col-md-6" id="divright">
+
+
+                    <!--<div class="box wrap-vid">-->
+                        <!--<div class="zoom-container" >-->
+                            <!--<div class="zoom-caption" >-->
+                                <!--<p >${more.title}</p>-->
+                            <!--</div>-->
+                            <!--<img src="images/${more.photo}"/>-->
+                        <!--</div>-->
+                        <!--<h3 class="vid-name"><a href="#">${more.title}</a></h3>-->
+                        <!--<div class="info">-->
+                            <!--<h5>By <a href="#">${more.username}</a></h5>-->
+                            <!--<span><i class="fa fa-calendar"></i>${more.writeTime}</span>-->
+                            <!--<span><i class="fa fa-heart"></i>${more.upNum}</span>-->
+                            <!--<span><i class="fa fa-thumbs-down"></i>${more.downNum}</span>-->
+                        <!--</div>-->
+                        <!--<p class="more">${more.content}</p>-->
+                    <!--</div>-->
+                    <!--<input type="hidden" VALUE="10" name="count" id="count">-->
+                    <!--<a href="#" class="readmore"><input  id="yuedu"   type="button"  value="阅读更多" ></a>-->
+
+                </div>
+                <div><input id="count" type="text" value="1" hidden="hidden" /> </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery 2.2.3 -->
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="js/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="js/app.min.js"></script>
+    <!-- iCheck -->
+    <script src="js/icheck.min.js"></script>
+    <!-- Page Script -->
+</body>
+</html>
